@@ -81,9 +81,24 @@ def upload():
     else:
         return redirect(request.url)
 
-@app.route("/retreive_images", methods = ["GET"])
+@app.route("/userInfo", methods = ["GET"])
 def get_images():
-    pass
+    email = request.args["email"].replace("@gmail.com", "")
+    path_to_save = os.path.join(app.config["IMAGE_UPLOADS"],
+                                str(email),
+                                )
+    image_list = os.listdir(os.path.join(os.getcwd(), path_to_save))
+
+    userInfo = {}
+    table = get_user_info(email)
+    for i in range(len(table)):
+        image_url = os.path.join(path_to_save, image_list[i]).replace(r"\ "[:-1], "/")
+        id_, date_string, weight_string = table[i]
+        userInfo[id_] = {"date_string": date_string,
+                         "weight_string": weight_string,
+                         "image_url": image_url}
+
+    return userInfo
 
 
 if __name__ == '__main__':
