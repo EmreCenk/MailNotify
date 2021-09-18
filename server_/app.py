@@ -2,14 +2,18 @@
 from flask import Flask, request, redirect
 import os
 from datetime import datetime
+from cockroach_db.cockroach_db import db
+
 def valid_serial(serial_number):
     #TODO: Check if the serial number is registered in the serial number database
     return True
 
 def save_image():
-    serial_num = request.values["serial"]
 
-    if not valid_serial(serial_num):
+    email = request.values["email"]
+    email = email.replace("@gmail.com", "")
+
+    if not valid_serial(email):
         return ""
 
     image = request.files["image"]
@@ -18,7 +22,7 @@ def save_image():
     proper_date = str(datetime.now()).replace(".", "-").replace(":", "-")
 
     path_to_save = os.path.join(app.config["IMAGE_UPLOADS"],
-                                str(serial_num),
+                                str(email),
                                 )
 
     if not os.path.exists(path_to_save):
