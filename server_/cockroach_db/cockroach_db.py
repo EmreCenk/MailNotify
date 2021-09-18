@@ -6,10 +6,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def check_if_table_exists(conn, table_name):
-    sql_ = f"select * from information_schema.tables where table_name=%s"
 
     cur = conn.cursor()
-    cur.execute(sql_, (table_name,))
+    cur.execute("select * from information_schema.tables where table_name=%s", (table_name,))
     result = bool(cur.rowcount)
     cur.close()
     return result
