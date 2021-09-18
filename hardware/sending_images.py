@@ -1,7 +1,6 @@
 
 
 import requests
-from app import get_user_info
 
 url = "http://127.0.0.1:5000/"
 
@@ -25,4 +24,4 @@ def userinfofromapi(email):
 if __name__ == '__main__':
     # send_image()
     # userinfofromapi("emrecenk9@gmail.com")
-    print(get_user_info("emrecenk9@gmail.com"))
+    pass

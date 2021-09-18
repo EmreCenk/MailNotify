@@ -14,6 +14,8 @@ exampleUsername = os.environ["USERNAME123123123"]
 examplePassword = os.environ["PASSWORD123123123"]
 
 class email:
+
+  @staticmethod
   def send(email,img):
     
     
