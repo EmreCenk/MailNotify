@@ -49,11 +49,21 @@ def save_to_cockroach(date_string):
 
     if not db.check_if_table_exists(conn, email):
         db.create_client_table(conn, email)
+        print('created new')
 
+    print("inserting")
     db.insert_to_table(conn, email, date_string, weight)
-
+    print("inserted to table")
     conn.commit()
     conn.close()
+
+def get_user_info(email):
+    email = email.replace("@gmail.com", "")
+    connection_string = os.environ["CONNECTION_STRING_TO_COCKROACHDB"]
+    conn = psycopg2.connect(connection_string)
+    result = db.get_table(conn, email)
+    conn.close()
+    return result
 
 
 app = Flask(__name__, template_folder="", static_folder="")
@@ -66,6 +76,7 @@ def upload():
     if request.method == "POST":
 
         proper_date = save_image()
+        save_to_cockroach(proper_date)
         return ""
     else:
         return redirect(request.url)
@@ -78,3 +89,4 @@ def get_images():
 if __name__ == '__main__':
     #for testing
     app.run(debug=True)
+    # print(get_user_info("emrecenk9@gmail.com"))

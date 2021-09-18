@@ -1,7 +1,7 @@
 
 
 import requests
-
+from app import get_user_info
 def send_image(image_name = "test_image.png",
                email ="emrecenk9@gmail.com",
                weight = "12 kg"):
@@ -17,3 +17,4 @@ def send_image(image_name = "test_image.png",
 
 if __name__ == '__main__':
     send_image()
+    # print(get_user_info("emrecenk9@gmail.com"))
