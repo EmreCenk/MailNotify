@@ -44,8 +44,8 @@
 
   .home .text {
     position: absolute;
-    top: 13rem;
-    left: 12rem;
+    top: 35%;
+    left: 25%;
     padding-bottom: 1rem;
   }
 
@@ -64,8 +64,8 @@
     width: 30%;
     height: 30%;
     position: absolute;
-    left: 45rem;
-    top: 14rem;
+    left: 51%;
+    top: 36%;
   }
 
   /*-------- login screen --------*/
@@ -94,10 +94,36 @@
   
   .hero nav h2 {
     color: #fff;
+    font-size: 25px;
+    padding-top: 10px;
   }
   
   .hero nav button {
     width: 86px;
     padding: 8px 0;
     background: #3a2b58;
+  }
+
+  /*-------- images --------*/
+  
+  .bottom-left {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .overlay-text {
+    color: white;
+    font: 400 20px/25px "Poppins", Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0); /* fallback color */
+    background: rgba(0, 0, 0, 0.4);
+    padding: 3px;
   }
