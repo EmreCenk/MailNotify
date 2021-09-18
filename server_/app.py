@@ -3,6 +3,7 @@ from flask import Flask, request, redirect
 import os
 from datetime import datetime
 from cockroach_db.cockroach_db import db
+import psycopg2
 
 def valid_serial(serial_number):
     #TODO: Check if the serial number is registered in the serial number database
@@ -35,6 +36,25 @@ def save_image():
     # path_to_save = os.path.join(path_to_save, str(datetime.now())+".png")
     image.save(proper_date + ".png")
     os.chdir(original)
+    return proper_date
+
+def save_to_cockroach(date_string):
+    email = request.values["email"]
+    weight = request.values["weight"]
+    email = email.replace("@gmail.com", "")
+    print("email:", email, "weight:", weight)
+
+    connection_string = os.environ["CONNECTION_STRING_TO_COCKROACHDB"]
+    conn = psycopg2.connect(connection_string)
+
+    if not db.check_if_table_exists(conn, email):
+        db.create_client_table(conn, email)
+
+    db.insert_to_table(conn, email, date_string, weight)
+
+    conn.commit()
+    conn.close()
+
 
 app = Flask(__name__, template_folder="", static_folder="")
 app.config["IMAGE_UPLOADS"] = "uploads"
@@ -45,7 +65,7 @@ def upload():
 
     if request.method == "POST":
 
-        save_image()
+        proper_date = save_image()
         return ""
     else:
         return redirect(request.url)
