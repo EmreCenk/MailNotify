@@ -84,6 +84,7 @@ def upload():
 @app.route("/userInfo", methods = ["GET"])
 def get_images():
     email = request.args["email"].replace("@gmail.com", "")
+    print("email received:",email)
     path_to_save = os.path.join(app.config["IMAGE_UPLOADS"],
                                 str(email),
                                 )
