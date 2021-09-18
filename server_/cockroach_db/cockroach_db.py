@@ -21,13 +21,40 @@ def create_client_table(conn, client_email, ):
     cur.close()
     conn.commit()
 
-if __name__ == '__main__':
+def get_table(conn, email):
+    email = email.replace("@gmail.com", "")
 
+    cur = conn.cursor()
+    cur.execute(f"SELECT * FROM {email};")
+    results = cur.fetchall()
+    cur.close()
+    print(results)
+    print(type(results))
+    return results
+
+def insert_to_table(conn, email: str, date_string: str, weight: str):
+    email = email.replace("@gmail.com", "")
+    cur = conn.cursor()
+    cur.execute(f"INSERT INTO {email} (date_string, weight) VALUES(%s, %s)", (date_string, weight) )
+    cur.close()
+
+    # conn.commit()
+
+if __name__ == '__main__':
+    from datetime import datetime
+    curmail = "emrecenk9@gmail.com"
     connection_string = os.environ["CONNECTION_STRING_TO_COCKROACHDB"]
     conn = psycopg2.connect(connection_string)
-    print(check_if_table_exists(conn, "emrecenk9@gmail.com"))
-    create_client_table(conn, "emrecenk9@gmail.com")
-    print(check_if_table_exists(conn, "emrecenk9@gmail.com"))
+
+    # print(check_if_table_exists(conn, "emrecenk9@gmail.com"))
+    # create_client_table(conn, "emrecenk9@gmail.com")
+    # print(check_if_table_exists(conn, "emrecenk9@gmail.com"))
+
+    insert_to_table(conn, curmail, str(datetime.now()), "12 kg")
+    insert_to_table(conn, curmail, str(datetime.now()), "32 kg")
+    insert_to_table(conn, curmail, str(datetime.now()), "15 kg")
+    a = get_table(conn, curmail)
+    print(a)
     conn.close()
 #
 # #creating a cursor
