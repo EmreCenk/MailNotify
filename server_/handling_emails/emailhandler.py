@@ -1,9 +1,12 @@
+from email.mime import image
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
-from datetime import date
+from datetime import*
 tod = date.today() #date
 today=str(tod)
+now = datetime.now()
+gettime = str(now.strftime("%H:%M:%S"))
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -11,7 +14,7 @@ exampleUsername = os.environ["USERNAME123123123"]
 examplePassword = os.environ["PASSWORD123123123"]
 
 class email:
-  def send(email):
+  def send(email,img):
     
     
     
@@ -22,7 +25,7 @@ class email:
     strFrom = "OfficialMailBoxNotifier"
     strTo = email
 
-    # Create the root message and fill in the from, to, and subject headers
+    
     msgRoot = MIMEMultipart('related')
     msgRoot['Subject'] = 'Mailbox alert'
     msgRoot['From'] = strFrom
@@ -33,16 +36,16 @@ class email:
     msgAlternative = MIMEMultipart('')
     msgRoot.attach(msgAlternative)
 
-    msgText = MIMEText(today)
+    msgText = MIMEText(today + " at "+gettime)
     msgAlternative.attach(msgText)
 
    
-    msgText = MIMEText('<b>The Mailbox Notifier has been triggered!</b><br>Here is the image of the delievery inside the mailbox: <br><img src="cid:image1" style="width:700px;height:500px" alt="Inside mailbox"><br><script>const b = new Date(); document.getElementById("date").innerHTML = b;</script>', 'html')
+    msgText = MIMEText('<br><b>The Mailbox Notifier has been triggered!</b><br>Here is the image of the delievery inside the mailbox: <br><img src="cid:image1" style="width:700px;height:500px" alt="Inside mailbox"><br><script>const b = new Date(); document.getElementById("date").innerHTML = b;</script>', 'html')
     msgAlternative.attach(msgText)
 
     # This example assumes the image is in the current directory
 
-    file = open("server_/test_image.png", "rb")
+    file = open(img, "rb")
     msgImage = MIMEImage(file.read())
     file.close()
     # Define the image's ID as referenced above
@@ -68,4 +71,4 @@ class email:
     print('sent successfully')
 
 if __name__ == "__main__":
-    email.send("ridwan3968@gmail.com") #Sends test email
+    email.send("ridwan3968@gmail.com","server_/test_image.png") #Sends test email
