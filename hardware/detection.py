@@ -1,6 +1,6 @@
 import time
 import Rpi.GPIO as GPIO
-
+from take_picture import take_and_upload
 #defining pins
 TRIG = 7
 ECHO = 12
@@ -45,8 +45,12 @@ while True:
 
         # PUT CAMERA OPERATION HERE
         # please add delay here as well if you havent.
+        time.sleep(0.5)
+        take_and_upload()
+        time.sleep(0.5) #wait for thing to pass
 
         GPIO.output(LED, 0)
+
 
     GPIO.cleanup()
 
