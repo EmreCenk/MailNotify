@@ -1,5 +1,5 @@
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 import os
 from twilio.rest import Client
 account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
