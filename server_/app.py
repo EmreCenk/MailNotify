@@ -92,9 +92,11 @@ def upload():
         twilio_sms_sender.send(phone_number, current_image_url)
         return ""
     else:
-        xml = request.url
 
-        return send_file(xml, as_attachment=True, attachment_filename=xml, mimetype="image/png")
+        redirect(request.url)
+        # xml = request.url
+
+        # return send_file(xml, as_attachment=True, attachment_filename=xml, mimetype="image/png")
 
 @app.route("/userInfo", methods = ["GET"])
 def get_images():

@@ -9,8 +9,8 @@ class sms:
     def send(phonenumber,image_url):
         send.messages.create(from_=os.environ.get('TWILIO_PHONE_NUMBER'),
                       to=phonenumber,
-                      media_url=[image_url],
-                      body='Mailbox has been opened. Check your mailbox for new items now!')
+                    #   media_url=[image_url],
+                      body='Your postbox has received mail! Open your gmail account to see the picture.')
         print("sent successfully")
 
 
