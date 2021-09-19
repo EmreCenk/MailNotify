@@ -5,6 +5,7 @@ from datetime import datetime
 from cockroach_db.cockroach_db import db
 import psycopg2
 from flask_cors import CORS
+from handling_emails.emailhandler import email as email_sender
 
 def valid_serial(serial_number):
     #TODO: Check if the serial number is registered in the serial number database
@@ -37,7 +38,7 @@ def save_image():
     # path_to_save = os.path.join(path_to_save, str(datetime.now())+".png")
     image.save(proper_date + ".png")
     os.chdir(original)
-    return proper_date
+    return path_to_save, proper_date
 
 def save_to_cockroach(date_string):
     email = request.values["email"]
@@ -76,9 +77,12 @@ app.config["IMAGE_UPLOADS"] = "uploads"
 def upload():
 
     if request.method == "POST":
+        #NEW ENTRY 
+        path_to_save, proper_date = save_image() # saves image
+        save_to_cockroach(proper_date) # saves info to cockroach db
 
-        proper_date = save_image()
-        save_to_cockroach(proper_date)
+        email_sender.send(request.values["email"], os.path.join(path_to_save, proper_date + ".png"))
+
         return ""
     else:
         return redirect(request.url)
