@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from cockroach_db.cockroach_db import db
 import psycopg2
+from flask_cors import CORS
 
 def valid_serial(serial_number):
     #TODO: Check if the serial number is registered in the serial number database
@@ -67,6 +68,7 @@ def get_user_info(email):
 
 
 app = Flask(__name__, template_folder="", static_folder="")
+CORS(app, resources=r'/*', supports_credentials=True)
 app.config["IMAGE_UPLOADS"] = "uploads"
 
 
