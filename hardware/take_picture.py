@@ -8,8 +8,9 @@ def take_and_save_picture():
     cap = cv2.VideoCapture(0) # video capture source camera (Here webcam of laptop)
     ret,frame = cap.read() # return a single frame in variable `frame`
     proper_date = str(datetime.now()).replace(".", "-").replace(":", "-")
-    cv2.imwrite(os.path.join("images", proper_date)+".png", frame)
-
+    path_to_save = os.path.join("images", proper_date)+".png"
+    cv2.imwrite(path_to_save, frame)
+    return path_to_save
 
 if __name__ == '__main__':
     take_and_save_picture()
