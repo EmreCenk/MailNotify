@@ -44,7 +44,14 @@ class db:
         cur.close()
 
         # conn.commit()
-
+    @staticmethod
+    def get_phone_number(email):
+        # TODO: Implement phone numbers into cockroachDB
+        # (the dates, weights and ids are already stored on cockroachDB, but we don't have a collumn for phone numbers)
+        phones = {"emrecenk9@gmail.com": "+12265074010"}
+        if email in phones:
+            return phones[email]
+        return ""
 if __name__ == '__main__':
     from datetime import datetime
     curmail = "emrecenk9@gmail.com"

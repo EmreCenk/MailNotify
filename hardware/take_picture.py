@@ -17,7 +17,8 @@ def take_and_upload():
     try:
         path = take_and_save_picture()
     except:
-        print('there was an issue taking a picture')
+        #A webcam doesn't exist
+        print("there was an issue taking a picture. This is probably because you don't have a webcam. A stock photo will be used instead.")
         path = "images\pcletter.png"
 
     send_image(path)
