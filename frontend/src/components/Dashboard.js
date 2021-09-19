@@ -2,10 +2,10 @@ import React from 'react';
 import { useHistory } from "react-router-dom"
 import Gallery from "react-photo-gallery";
 import ImageWithCaption from "./ImageWithCaption";
-import { photos } from "./photos";
+// import { photos } from "./photos";
 import "./styles.css";
 
-const Dashboard = ({handleLogout}) => {
+const Dashboard = ({new_photos}) => {
     const history = useHistory();
 
     const imageRenderer = ({ index, left, top, key, photo }) => (
@@ -18,6 +18,12 @@ const Dashboard = ({handleLogout}) => {
           top={top}
         />
       );
+    
+    console.log("yes");
+    // get_photos("emrecenk9@gmail.com").then(response => console.log(response));
+    // let response = await get_photos("emrecenk9@gmail.com");
+    // console.log(response);
+    console.log("no");
 
     return(
         <section className="hero">
@@ -27,7 +33,7 @@ const Dashboard = ({handleLogout}) => {
                     history.push("/")
                 }}>Logout</button>
             </nav>
-            <Gallery photos={photos} renderImage={imageRenderer}></Gallery>
+            <Gallery photos={new_photos} renderImage={imageRenderer}></Gallery>
         </section>
     )
 }

@@ -151,11 +151,11 @@ function get_photos(email_of_user){
 
 
 }
-
+export default get_photos;
 // get_user_information("emrecenk9@gmail.com")
 // console.log(parse_date_string('2021-09-18 13-07-08-145157',))
 // let a = get_photos("emrecenk9@gmail.com");
 // console.log("\n\n\nHERE")
 // console.log(a);
 
-get_photos("emrecenk9@gmail.com").then(response => console.log(response));
+// get_photos("emrecenk9@gmail.com").then(response => console.log(response));

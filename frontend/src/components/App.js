@@ -8,8 +8,15 @@ import { useHistory } from "react-router-dom"
 import Dashboard from "./Dashboard"
 import Login from "./Login"
 import Home from "./Home"
+import get_photos from './sending_requests';
 
 function App() {
+  let new_photos;
+
+  get_photos("emrecenk9@gmail.com").then(response => {
+    new_photos = response;
+  })
+
   return (
       <div className="w-100">
         <Router>
@@ -18,7 +25,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
-              <Route path="/dash" component={Dashboard} />
+              <Route new_photos = {new_photos} path="/dash" component={Dashboard} />
             </Switch>
           </AuthProvider>
         </Router>
