@@ -6,7 +6,7 @@ from cockroach_db.cockroach_db import db
 import psycopg2
 from flask_cors import CORS
 from handling_emails.emailhandler import email as email_sender
-
+from sms.twilosms import sms as twilio_sms_sender
 def valid_serial(serial_number):
     #TODO: Check if the serial number is registered in the serial number database
     return True
@@ -83,6 +83,11 @@ def upload():
 
         email_sender.send(request.values["email"], os.path.join(path_to_save, proper_date + ".png"))
 
+
+        current_image_url = request.url_root + "/" + "uploads" + "/" + request.values["email"].replace("@gmail.com", "") + "/" + proper_date + ".png"
+        current_image_url = current_image_url.replace(" ", "%20")
+        print("sending request to", current_image_url)
+        twilio_sms_sender.send(db.get_phone_number(request.values["email"]), current_image_url)
         return ""
     else:
         return redirect(request.url)
@@ -93,6 +98,7 @@ def get_images():
     print("email received:",email)
     path_to_save = os.path.join(app.config["IMAGE_UPLOADS"],
                                 str(email),
+
                                 )
     image_list = os.listdir(os.path.join(os.getcwd(), path_to_save))
 

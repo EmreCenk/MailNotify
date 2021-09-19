@@ -11,7 +11,7 @@ class sms:
                       to=phonenumber,
                       media_url=[image_url],
                       body='Mailbox has been opened. Check your mailbox for new items now!')
-        print("sent successfully")
+        print("sent sms successfully")
 
 
 if __name__ == '__main__':
