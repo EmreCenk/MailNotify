@@ -14,9 +14,10 @@
 
 .overlay-text {
   color: white;
-  font: 400 20px/25px "Poppins", Sans-Serif;
+  font: 700 20px/25px "Poppins", Sans-Serif;
   letter-spacing: -1px;
   background: rgb(0, 0, 0); /* fallback color */
   background: rgba(0, 0, 0, 0.4);
   padding: 3px;
 }
+

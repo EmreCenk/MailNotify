@@ -9,7 +9,8 @@ function parse_date_string(date_string){
     return String(monthNames[parseInt(date_string[0][1])-1] +
     " " + date_string[0][2] + ", " + date_string[0][0] + " | " + date_string[1][0] + ":" + date_string[1][1] )
 }
-async function get_user_information(email_of_user){
+// export default function get_user_information = async (email_of_user) =>{
+export default async function get_user_information(email_of_user){
     /*
     email_of_user [string]: email of the user you would like to receive information on
 
@@ -31,7 +32,9 @@ async function get_user_information(email_of_user){
     each entry is an id (you don't have to worry about what they are. )
 
     */
-    let url = "http://127.0.0.1:5000/"; 
+    
+    let url_base = "http://127.0.0.1:5000/";
+    let url = String(url_base); 
     //TODO: When deploying, change url from localhost to actual domain
     url+="userInfo";
     const parameters = {email: email_of_user};
@@ -44,6 +47,7 @@ async function get_user_information(email_of_user){
         some_var = response.data[id_];
         // console.log("HERE", some_var.date_string, parse_date_string(some_var.date_string));
         some_var.date_string = String(parse_date_string(some_var.date_string));
+        some_var.image_url = String(url_base + some_var.image_url)
         final_list.push(some_var);
       }
     //console.log(final_list);
@@ -151,7 +155,12 @@ function get_photos(email_of_user){
 
 
 }
-export default get_photos;
+
+// export default get_user_information;
+// export default{
+//   get_user_information,
+//   parse_photos,
+// }
 // get_user_information("emrecenk9@gmail.com")
 // console.log(parse_date_string('2021-09-18 13-07-08-145157',))
 // let a = get_photos("emrecenk9@gmail.com");

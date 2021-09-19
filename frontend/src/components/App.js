@@ -11,11 +11,11 @@ import Home from "./Home"
 import get_photos from './sending_requests';
 
 function App() {
-  let new_photos;
+  // let new_photos;
 
-  get_photos("emrecenk9@gmail.com").then(response => {
-    new_photos = response;
-  })
+  // get_photos("emrecenk9@gmail.com").then(response => {
+  //   new_photos = response;
+  // })
 
   return (
       <div className="w-100">
@@ -25,7 +25,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route path="/signup" component={Signup} />
               <Route path="/login" component={Login} />
-              <Route new_photos = {new_photos} path="/dash" component={Dashboard} />
+              <Route path="/dash" component={Dashboard} />
             </Switch>
           </AuthProvider>
         </Router>

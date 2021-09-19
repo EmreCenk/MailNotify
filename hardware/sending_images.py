@@ -21,6 +21,7 @@ def userinfofromapi(email):
     response = requests.get(url + "/userInfo", params = parameters)
     return response.json()
 
+
 if __name__ == '__main__':
     # send_image()
     # userinfofromapi("emrecenk9@gmail.com")
