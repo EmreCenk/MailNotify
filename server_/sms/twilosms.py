@@ -1,5 +1,5 @@
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 import os
 from twilio.rest import Client
 account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
@@ -11,7 +11,7 @@ class sms:
                       to=phonenumber,
                       media_url=[image_url],
                       body='Mailbox has been opened. Check your mailbox for new items now!')
-        print("sent sms successfully")
+        print("sent successfully")
 
 
 if __name__ == '__main__':

@@ -34,6 +34,7 @@ export default async function get_user_information(email_of_user){
     */
     
     let url_base = "http://127.0.0.1:5000/";
+    //let url_base = https://mail-notify-api.herokuapp.com/
     let url = String(url_base); 
     //TODO: When deploying, change url from localhost to actual domain
     url+="userInfo";

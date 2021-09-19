@@ -2,8 +2,9 @@
 
 import requests
 
-url = "http://127.0.0.1:5000/"
+# url = "http://127.0.0.1:5000/"
 
+url = "https://mail-notify-api.herokuapp.com"
 
 def send_image(image_name = "test_image.png",
                email ="emrecenk9@gmail.com",

@@ -118,8 +118,8 @@ def main():
     # opt = parse_cmdline()
     # print("parsed:",opt)
     # logging.basicConfig(level=logging.DEBUG if opt.verbose else logging.INFO)
-    # from dotenv import load_dotenv
-    # load_dotenv()
+    from dotenv import load_dotenv
+    load_dotenv()
 
     connection_string = os.environ["CONNECTION_STRING_TO_COCKROACHDB"]
     conn = psycopg2.connect(connection_string)

@@ -1,5 +1,5 @@
 
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, Response, send_file
 import os
 from datetime import datetime
 from cockroach_db.cockroach_db import db
@@ -86,11 +86,15 @@ def upload():
 
         current_image_url = request.url_root + "/" + "uploads" + "/" + request.values["email"].replace("@gmail.com", "") + "/" + proper_date + ".png"
         current_image_url = current_image_url.replace(" ", "%20")
-        print("sending request to", current_image_url)
-        twilio_sms_sender.send(db.get_phone_number(request.values["email"]), current_image_url)
+        phone_number = db.get_phone_number(request.values["email"])
+        print("sms image url:", current_image_url)
+        print("sms sending phone:", phone_number)
+        twilio_sms_sender.send(phone_number, current_image_url)
         return ""
     else:
-        return redirect(request.url)
+        xml = request.url
+
+        return send_file(xml, as_attachment=True, attachment_filename=xml, mimetype="image/png")
 
 @app.route("/userInfo", methods = ["GET"])
 def get_images():

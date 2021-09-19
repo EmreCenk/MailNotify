@@ -14,6 +14,7 @@ def take_and_save_picture():
     return path_to_save
 
 def take_and_upload():
+    """Takes a picture, then sends to server"""
     try:
         path = take_and_save_picture()
     except:

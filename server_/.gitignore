@@ -131,4 +131,3 @@ dmypy.json
 .idea/
 .vscode/
 node_modules/
-root.crt

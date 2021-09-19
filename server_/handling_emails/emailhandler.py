@@ -5,8 +5,8 @@ from email.mime.image import MIMEImage
 from datetime import*
 
 import os
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 exampleUsername = os.environ["USERNAME123123123"]
 examplePassword = os.environ["PASSWORD123123123"]
 
