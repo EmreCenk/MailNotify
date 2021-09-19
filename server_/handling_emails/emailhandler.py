@@ -3,10 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from datetime import*
-tod = date.today() #date
-today=str(tod)
-now = datetime.now()
-gettime = str(now.strftime("%H:%M:%S"))
+
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,7 +15,10 @@ class email:
   @staticmethod
   def send(email,img):
     
-    
+    tod = date.today() #date
+    today=str(tod)
+    now = datetime.now()
+    gettime = str(now.strftime("%H:%M:%S"))
     
     # print("USERNAME:",exampleUsername)
     # print("PASSWORD", examplePassword)
