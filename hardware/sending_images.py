@@ -17,16 +17,19 @@ def send_image(image_name = "test_image.png",
     print(r.status_code)
     return r
 
-# def userinfofromapi(email):
-#     """
-#     for testing. 
-#     """
-#     parameters = {"email": email}
-#     response = requests.get(url + "/userInfo", params = parameters)
-#     return response.json()
+def userinfofromapi(email):
+    """
+    for testing. 
+    """
+    parameters = {"email": email}
+    response = requests.get(url + "/userInfo", params = parameters)
+    return response.json()
 
 
 if __name__ == '__main__':
     # send_image()
-    # userinfofromapi("emrecenk9@gmail.com")
-    pass
+    print(userinfofromapi("emrecenk9@gmail.com"))
+    from take_picture import take_and_upload
+    take_and_upload()
+    print(userinfofromapi("emrecenk9@gmail.com"))
+

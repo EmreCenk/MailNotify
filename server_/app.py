@@ -110,7 +110,7 @@ def get_images():
 
     userInfo = {}
     table = get_user_info(email)
-    for i in range(len(table)):
+    for i in range(min(len(table), len(image_list))):
         image_url = os.path.join(path_to_save, image_list[i]).replace(r"\ "[:-1], "/")
         id_, date_string, weight_string = table[i]
         userInfo[id_] = {"date_string": date_string,
